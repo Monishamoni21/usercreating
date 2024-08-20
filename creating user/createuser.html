@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New User - E-commerce Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .confirmation-message {
+            margin-top: 20px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Create New User</h1>
+    <form id="userForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br><br>
+
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required>
+        <br><br>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+        <br><br>
+
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" rows="4" cols="50" required></textarea>
+        <br><br>
+
+        <input type="submit" value="Create Account">
+    </form>
+
+    <div class="confirmation-message" id="confirmationMessage"></div>
+
+    <script>
+        document.getElementById('userForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            let confirmationMessage = `<h2>Account Created Successfully</h2>`;
+            confirmationMessage += `<p><strong>Username:</strong> ${username}</p>`;
+            confirmationMessage += `<p><strong>Email:</strong> ${email}</p>`;
+            confirmationMessage += `<p><strong>Phone Number:</strong> ${phone}</p>`;
+            confirmationMessage += `<p><strong>Address:</strong> ${address}</p>`;
+
+            document.getElementById('confirmationMessage').innerHTML = confirmationMessage;
+        });
+    </script>
+</body>
+</html>
